@@ -4,25 +4,30 @@
     function seed(){
         $data = array(
             array(
+                'id'    => '1',
                 'fname' => 'Karim',
-                'lanme' => 'Huque',
-                'roll' => '11'
+                'lname' => 'Huque',
+                'roll'  => '11'
             ),array(
+                'id'    => '2',
                 'fname' => 'Rahim',
-                'lanme' => 'Huque',
-                'roll' => '12'
+                'lname' => 'Huque',
+                'roll'  => '12'
             ),array(
+                'id'    => '3',
                 'fname' => 'Kamal',
-                'lanme' => 'Huque',
-                'roll' => '13'
+                'lname' => 'Huque',
+                'roll'  => '13'
             ),array(
+                'id'    => '4',
                 'fname' => 'Salam',
-                'lanme' => 'Huque',
-                'roll' => '14'
+                'lname' => 'Huque',
+                'roll'  => '14'
             ),array(
+                'id'    => '5',
                 'fname' => 'Barkat',
-                'lanme' => 'Huque',
-                'roll' => '14'
+                'lname' => 'Huque',
+                'roll'  => '15'
             ),
         );
 
@@ -48,7 +53,7 @@
                     <td> <?php printf('%s', $student['roll']); ?>  </td>
                     <td> <?php printf('<a href="#">Edit</a> | <a href="#">Delet</a>'); ?>  </td>
                 </tr>
-            <?
+            <?php
         }
         ?>
     </table>
