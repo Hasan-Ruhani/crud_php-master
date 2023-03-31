@@ -43,7 +43,7 @@
         <tr>
             <th>Name</th>
             <th>Roll</th>
-            <th>Action</th>
+            <th width="25%">Action</th>
         </tr>
         <?php
         foreach($students as $student){
@@ -51,11 +51,26 @@
                 <tr>
                     <td> <?php printf('%s %s', $student['fname'], $student['lname']); ?>  </td>
                     <td> <?php printf('%s', $student['roll']); ?>  </td>
-                    <td> <?php printf('<a href="#">Edit</a> | <a href="#">Delet</a>'); ?>  </td>
+                    <td> <?php printf('<a href="/Hasin_Haidar/crud/index.php?task=edit&id=%s">Edit</a> | <a href="/Hasin_Haidar/crud/index.php?task=delete&id=%s">Delete</a>', $student['id'], $student['id']); ?>  </td>
                 </tr>
             <?php
         }
         ?>
     </table>
 <?php
+    }
+
+    function addStudent($fname, $lname, $roll){
+        $serializedData = file_get_contents(DB_NAME);
+        $students       = unserialize($serializedData);
+        $newId          = count($students) + 1;
+        $student        = array(
+            'id'    => $newId,
+            'fname' => $fname,
+            'lname' => $lname,
+            'roll'  => $roll
+        );
+        array_push($students, $student);
+        $serializedData = serialize($students);
+        file_put_contents(DB_NAME, $serializedData, LOCK_EX);
     }
