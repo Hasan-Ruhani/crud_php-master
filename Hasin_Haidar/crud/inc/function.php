@@ -61,16 +61,27 @@
     }
 
     function addStudent($fname, $lname, $roll){
+        $found = false;
         $serializedData = file_get_contents(DB_NAME);
         $students       = unserialize($serializedData);
-        $newId          = count($students) + 1;
-        $student        = array(
-            'id'    => $newId,
-            'fname' => $fname,
-            'lname' => $lname,
-            'roll'  => $roll
-        );
-        array_push($students, $student);
-        $serializedData = serialize($students);
-        file_put_contents(DB_NAME, $serializedData, LOCK_EX);
+        foreach($students as $_student){
+            if($_student['roll'] == $roll){
+                $found = true;
+                break;
+            }
+        }
+        if(!$found){
+            $newId          = count($students) + 1;
+            $student        = array(
+                'id'    => $newId,
+                'fname' => $fname,
+                'lname' => $lname,
+                'roll'  => $roll
+            );
+            array_push($students, $student);
+            $serializedData = serialize($students);
+            file_put_contents(DB_NAME, $serializedData, LOCK_EX);
+            return true;
+        }
+        return false;
     }
