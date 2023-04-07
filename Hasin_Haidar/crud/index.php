@@ -2,6 +2,7 @@
     require_once "inc/function.php";
     $info = '';
     $task = $_GET['task'] ?? 'report';
+    $error = $_GET['error'] ?? '0';
     if('seed' == $task){
         seed();
         $info = "Seeding is complete!";
@@ -14,8 +15,13 @@
 
 
         if($fname != '' && $lname != '' && $roll != ''){
-            addStudent($fname, $lname, $roll);
-            header('location: /Hasin_Haidar/crud/index.php?task=report');
+            $result = addStudent($fname, $lname, $roll);
+            if($result){
+                header('location: /Hasin_Haidar/crud/index.php?task=report');
+            }
+            else{
+                header('location: /Hasin_Haidar/crud/index.php?task=report&error=1');
+            }
         }
     }
 ?>
@@ -46,6 +52,17 @@
                     ?>
                 </div>
             </div>
+
+            <?php if(1 == $error): ?>
+            <div class="row">
+                <div class="column column-60 column-offset-20">
+                    <blockquote>
+                        Duplicate Roll Number
+                    </blockquote>
+                </div>
+            </div>
+            <?php endif; ?>
+
             <?php if('report' == $task): ?>
             <div class="row">
                 <div class="column column-60 column-offset-20">
