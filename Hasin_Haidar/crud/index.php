@@ -62,6 +62,7 @@
                 </div>
             </div>
             <?php endif; ?>
+            
 
             <?php if('report' == $task): ?>
             <div class="row">
