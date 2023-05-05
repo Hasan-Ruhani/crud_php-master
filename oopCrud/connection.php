@@ -33,7 +33,7 @@
         //     else{
         //         echo mysqli_error($this->conn);
         //     }
-        // }
+        // } 
     }
     
     $database = new db('localhost', 'root', '', 'store_db');
