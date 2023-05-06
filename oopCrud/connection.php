@@ -20,24 +20,24 @@
             }
         }
     
-        // public function insert() {
-        //     if (!$this->conn) {
-        //         echo "Connection failed";
-        //         return;
-        //     }
+        public function insert() {
+            if (!$this->conn) {
+                echo "Connection failed";
+                return;
+            }
     
-        //     $sqli = "INSERT INTO category(category_name, category_entrydate) VALUES('housing', '22-02-22')";
-        //     if(mysqli_query($this->conn, $sqli) == TRUE){
-        //         echo "Data Inserted";
-        //     }
-        //     else{
-        //         echo mysqli_error($this->conn);
-        //     }
-        // } 
+            $sqli = "INSERT INTO category(category_name, category_entrydate) VALUES('Market', '05-05-23')";
+            if(mysqli_query($this->conn, $sqli) == TRUE){
+                echo "Data Inserted";
+            }
+            else{
+                echo mysqli_error($this->conn);
+            }
+        } 
     }
     
     $database = new db('localhost', 'root', '', 'store_db');
-    // $database->insert();
+    $database->insert();
     
 
     
