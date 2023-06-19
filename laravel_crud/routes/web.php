@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+//.......................................................................user
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [CrudController::class, 'ShowData']);
     Route::get('/add-data', [CrudController::class, 'AddData']);
@@ -26,6 +27,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit-data/{id}', [CrudController::class, 'EditData']);
     Route::post('/update-data/{id}', [CrudController::class, 'UpdateData']);
     Route::get('/delete-data/{id}', [CrudController::class, 'DeleteData']);
+});
+
+//...........................................................................admin
+Route::get('/admin', [adminController::class, 'getAdmin']);
+Route::post('/admin_login', [adminController::class, 'getAdmin_login']);
+Route::group(['middleware' => 'admin'], function(){
+    // Route::get('/home', [CrudController::class, 'ShowData']);
+    // Route::get('/add-data', [CrudController::class, 'AddData']);
+    // Route::post('/store-data', [CrudController::class, 'StoreData']);
+    // Route::get('/edit-data/{id}', [CrudController::class, 'EditData']);
+    // Route::post('/update-data/{id}', [CrudController::class, 'UpdateData']);
+    // Route::get('/delete-data/{id}', [CrudController::class, 'DeleteData']);
 });
 
 
